@@ -2,6 +2,13 @@ import speech_recognition as sr
 import pyttsx3
 import requests
 import json
+from elevenlabs import play  # for generate and speak
+from elevenlabs.client import ElevenLabs
+# from elevenlabs import stream  # for stream
+
+client = ElevenLabs(
+    api_key="bd22d7ba346ff621923887bf18f7781a",  # Defaults to ELEVEN_API_KEY
+)
 
 # Function to recognize speech
 
@@ -28,10 +35,26 @@ def recognize_speech():
 # Function to speak the response
 
 
-def speak_response(text):
-    engine = pyttsx3.init()
-    engine.say(text)
-    engine.runAndWait()
+def speak_response(textaudio):
+    # engine = pyttsx3.init()
+    # engine.say(text)
+    # engine.runAndWait()
+
+    # this is to first generate then speak
+    audio = client.generate(
+        text=textaudio,
+        voice="Rachel",
+        model="eleven_multilingual_v2",
+
+    )
+    play(audio)
+
+    # this is to stream the audio in realtime as its being generated
+    # audio_stream = client.generate(
+    #     text=textaudio,
+    #     stream=True
+    # )
+# stream(audio_stream)
 
 
 # Define the API endpoint
