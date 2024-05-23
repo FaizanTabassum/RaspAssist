@@ -3,20 +3,13 @@ import speech_recognition as sr
 import pyttsx3
 import requests
 import json
-from elevenlabs import play  # for generate and speak
-from elevenlabs.client import ElevenLabs
-from dotenv import load_dotenv  # Ensure dotenv is imported
-# from elevenlabs import stream  # for stream
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
 load_dotenv()
 
-ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
-client = ElevenLabs(
-    api_key=ELEVENLABS_API_KEY,
-)
-
 # Define the API endpoint
-url = os.getenv("OLLAMA_URL")
+OLLAMA_URL = os.getenv("OLLAMA_URL")
 
 # Function to recognize speech
 
@@ -37,32 +30,16 @@ def recognize_speech():
         print("Could not understand audio")
         return ""
     except sr.RequestError as e:
-        print("Could not request results; {0}".format(e))
+        print(f"Could not request results; {e}")
         return ""
 
 # Function to speak the response
 
 
-def speak_response(textaudio):
-    # engine = pyttsx3.init()
-    # engine.say(text)
-    # engine.runAndWait()
-
-    # this is to first generate then speak
-    audio = client.generate(
-        text=textaudio,
-        voice="Rachel",
-        model="eleven_multilingual_v2",
-
-    )
-    play(audio)
-
-    # this is to stream the audio in realtime as its being generated
-    # audio_stream = client.generate(
-    #     text=textaudio,
-    #     stream=True
-    # )
-# stream(audio_stream)
+def speak_response(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
 
 
 while True:
@@ -78,7 +55,7 @@ while True:
         }
 
         # Send the POST request
-        response = requests.post(url, json=payload)
+        response = requests.post(OLLAMA_URL, json=payload)
 
         # Check if the response status code is 200 (OK)
         if response.status_code == 200:
@@ -94,5 +71,5 @@ while True:
             continue
         else:
             print(
-                f'Received response with status code: {response.status_code}')
+                f"Received response with status code: {response.status_code}")
             print(response.text)
