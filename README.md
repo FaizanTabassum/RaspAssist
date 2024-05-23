@@ -13,7 +13,6 @@ RaspAssist is a Python project that uses speech recognition to take voice input 
 - Python 3.x
 - `speech_recognition` module
 - `requests` module
-- `elevenlabs` module
 - `dotenv` module
 
 ## Installation
@@ -46,7 +45,6 @@ RaspAssist is a Python project that uses speech recognition to take voice input 
 5. Create a `.env` file in the project root and add your API keys:
 
    ```sh
-   ELEVENLABS_API_KEY=your_elevenlabs_api_key
    OLLAMA_URL=https://your_ngrok_url
    ```
 
@@ -63,7 +61,7 @@ RaspAssist is a Python project that uses speech recognition to take voice input 
 ## Additional Resources
 
 - [Ollama Docker Image](https://hub.docker.com/r/ollama/ollama): Information on how to use the Ollama Docker image.
-- [ElevenLabs API Documentation](https://elevenlabs.io/docs/api-reference/getting-started): Learn how to use the ElevenLabs API.
+- [Generate Ollama request](https://github.com/ollama/ollama/blob/main/docs/api.md):How to do the API calls
 - [Ngrok](https://dashboard.ngrok.com/get-started/setup/windows): You can find the Ngrok commands here.
 - [Ngrok Tutorial](https://www.youtube.com/watch?v=Tg84mhnAhuA): A video tutorial on how to use Ngrok.
 
