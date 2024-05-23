@@ -1,14 +1,22 @@
+import os
 import speech_recognition as sr
 import pyttsx3
 import requests
 import json
 from elevenlabs import play  # for generate and speak
 from elevenlabs.client import ElevenLabs
+from dotenv import load_dotenv  # Ensure dotenv is imported
 # from elevenlabs import stream  # for stream
 
+load_dotenv()
+
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 client = ElevenLabs(
-    api_key="bd22d7ba346ff621923887bf18f7781a",  # Defaults to ELEVEN_API_KEY
+    api_key=ELEVENLABS_API_KEY,
 )
+
+# Define the API endpoint
+url = os.getenv("OLLAMA_URL")
 
 # Function to recognize speech
 
@@ -56,9 +64,6 @@ def speak_response(textaudio):
     # )
 # stream(audio_stream)
 
-
-# Define the API endpoint
-url = 'http://localhost:11434/api/generate'
 
 while True:
     # Get user query
