@@ -1,7 +1,15 @@
+import os
 import speech_recognition as sr
 import pyttsx3
 import requests
 import json
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Define the API endpoint
+OLLAMA_URL = os.getenv("OLLAMA_URL")
 
 # Function to recognize speech
 
@@ -22,7 +30,7 @@ def recognize_speech():
         print("Could not understand audio")
         return ""
     except sr.RequestError as e:
-        print("Could not request results; {0}".format(e))
+        print(f"Could not request results; {e}")
         return ""
 
 # Function to speak the response
@@ -33,9 +41,6 @@ def speak_response(text):
     engine.say(text)
     engine.runAndWait()
 
-
-# Define the API endpoint
-url = 'http://localhost:11434/api/generate'
 
 while True:
     # Get user query
@@ -50,7 +55,7 @@ while True:
         }
 
         # Send the POST request
-        response = requests.post(url, json=payload)
+        response = requests.post(OLLAMA_URL, json=payload)
 
         # Check if the response status code is 200 (OK)
         if response.status_code == 200:
@@ -66,5 +71,5 @@ while True:
             continue
         else:
             print(
-                f'Received response with status code: {response.status_code}')
+                f"Received response with status code: {response.status_code}")
             print(response.text)
