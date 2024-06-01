@@ -2,6 +2,7 @@
 
 RaspAssist is a Python project that uses speech recognition to take voice input from the user, sends the input to an AI model (llama3 and llava) hosted on a server, and uses TTS to generate and play the audio response.
 It also has image processing capabillities so you can show it whats around you and ask any questions regarding your surrounding or what the camera sees.
+Its basically a Rabit R1 clone but better and faster and the best part is the model itself runs on your own server.
 
 ## Features
 
@@ -78,7 +79,7 @@ It also has image processing capabillities so you can show it whats around you a
 
 ## Additional Resources
 
-- [Display setup]([https://hub.docker.com/r/ollama/ollama](https://core-electronics.com.au/guides/small-screens-raspberry-pi/)): Information on how to setup the display.
+- [Display setup](https://core-electronics.com.au/guides/small-screens-raspberry-pi/): Information on how to setup the display.
 - [Ollama Docker Image](https://hub.docker.com/r/ollama/ollama): Information on how to use the Ollama Docker image.
 - [Generate Ollama request](https://github.com/ollama/ollama/blob/main/docs/api.md):How to do the API calls
 - [Ngrok](https://dashboard.ngrok.com/get-started/setup/windows): You can find the Ngrok commands here.
