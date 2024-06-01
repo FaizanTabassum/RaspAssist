@@ -46,8 +46,8 @@ It also has image processing capabillities so you can show it whats around you a
    ```
    However if we cant install the camera library using a virtual environment so we need to use the following method:
 
-   use pip's argument --break-system-packages,
-   add following lines to ~/.config/pip/pip.conf:
+   use pip's argument `--break-system-packages`,
+   add following lines to `~/.config/pip/pip.conf`:
    ```sh
    [global]
    break-system-packages = true
